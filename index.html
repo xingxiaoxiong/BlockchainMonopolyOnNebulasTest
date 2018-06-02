@@ -59,7 +59,7 @@
                 }
                 playerAddress = BrowserStorage.retrieve()
                 if (playerAddress == "" || playerAddress == null) {
-                    var address = prompt("Please enter your account address", "")
+                    var address = prompt("请输入账户地址", "")
                     if (address != null){
                         BrowserStorage.login(address)
                     } else {
@@ -153,7 +153,7 @@
             text: 'Click to change account'
         })
         changeAccountButton.on('mousedown', function () {
-            var address = prompt("Please enter your account address", playerAddress)
+            var address = prompt("请输入账户地址", playerAddress)
             if (address != null){
                 BrowserStorage.login(address)
                 refresh()
@@ -293,13 +293,13 @@
                     cityIcon.on('mouseover', function(){
                         var city = mapCities[cityId]
                         var coord = lonlat2coord(city.lon, city.lat)
-                        var msg = city.name + '\nPrice: ' + BlockchainInterface.basicToNas(city.price) + ' NAS\nOwner: '; 
+                        var msg = city.name + '\n价格: ' + BlockchainInterface.basicToNas(city.price) + ' NAS\n市长: '; 
                         if (city.owner) {
                             msg += city.owner + '\n';
                         } else {
-                            msg += 'No owner yet.\n'
+                            msg += '还没有市长。\n'
                         }
-                        msg += 'Treasure: ' + BlockchainInterface.basicToNas(city.treasure) + ' NAS\n';
+                        msg += '宝藏: ' + BlockchainInterface.basicToNas(city.treasure) + ' NAS\n';
                         var text = tooltip.getText()
                         text.setText(msg)
                         tooltip.x(coord[0])
@@ -323,7 +323,7 @@
                     if (mapCityInfo.treasure > 0) {
                         (function (cityId) {
                             cityIcon.on('mousedown', function(){
-                                if (confirm("Claim the treasure")) {
+                                if (confirm("捡起宝藏")) {
                                     blockchainInterface.claimTreasure(cityId, function() {
                                         console.log('claimed treasure!!!')
                                     })
@@ -335,7 +335,7 @@
                             var cityInfo = mapCities[cityId];
                             var cityPrice = BlockchainInterface.basicToNas(cityInfo.price)
                             cityIcon.on('mousedown', function(){
-                                if (confirm("Buy this city by paying " + cityPrice + " NAS")) {
+                                if (confirm("支付 " + cityPrice + " NAS 成为该市市长")) {
                                     blockchainInterface.buy(cityId, cityPrice, function() {
                                         console.log('Bought it!!!')
                                     })
@@ -350,9 +350,9 @@
                         cityIcon.on('mousedown', function(){
                             var cityInfo = mapCities[cityId]
                             var cityPrice = BlockchainInterface.basicToNas(cityInfo.price)
-                            var confirmText = 'Do you wanna move to ' + cityInfo.name + '?\n';
+                            var confirmText = '确定移动到 ' + cityInfo.name + '？\n';
                             if (cityInfo.owner && cityInfo.owner != playerAddress) {
-                                confirmText += cityInfo.name + ' has an owner, you need to pay ' + cityPrice.times(0.01) + ' NAS to be able to move to this city'
+                                confirmText += cityInfo.name + ' 已经有了主人，需要支付 ' + cityPrice.times(0.01) + ' NAS 作为过路费'
                             }
                             if (confirm(confirmText)) {
                                 if (key !== playerPosition) { // unnecessary if check
@@ -386,7 +386,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             if(typeof(webExtensionWallet) === "undefined"){
-                if (window.confirm('Please install the Chrome web wallet extension to use this Dapp. Click to install.')) {
+                if (window.confirm('请安装星云链的Chrome钱包扩展.')) {
                     window.open('https://github.com/ChengOrangeJu/WebExtensionWallet');
                 }
             }
