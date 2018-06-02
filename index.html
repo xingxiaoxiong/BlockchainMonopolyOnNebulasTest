@@ -25,11 +25,6 @@
     <script src="./js/worldmap.js"></script>
     <script>
 
-        if(typeof(webExtensionWallet) === "undefined"){
-            if (window.confirm('Please install the Chrome web wallet extension to use this Dapp. Click to install.')) {
-                window.open('https://github.com/ChengOrangeJu/WebExtensionWallet');
-            }
-        }
         var width = window.innerWidth;
         var height = window.innerHeight;
         var cityCircleRadius = 8
@@ -389,6 +384,14 @@
                 confirm(helpText)
             } 
         }
+
+	$(window).load(function(){ 
+            if(typeof(webExtensionWallet) === "undefined"){
+                if (window.confirm('Please install the Chrome web wallet extension to use this Dapp. Click to install.')) {
+                    window.open('https://github.com/ChengOrangeJu/WebExtensionWallet');
+                }
+            }
+        })
     </script>
 
 </body>
