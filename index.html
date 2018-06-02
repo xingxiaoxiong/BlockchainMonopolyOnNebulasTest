@@ -385,13 +385,13 @@
             } 
         }
 
-	$(window).load(function(){ 
+        document.addEventListener('DOMContentLoaded', function() {
             if(typeof(webExtensionWallet) === "undefined"){
                 if (window.confirm('Please install the Chrome web wallet extension to use this Dapp. Click to install.')) {
                     window.open('https://github.com/ChengOrangeJu/WebExtensionWallet');
                 }
             }
-        })
+        }, false);
     </script>
 
 </body>
